@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Service to manage PayBC interaction."""
-
+import pprint
 from typing import Dict
 
 import ldap
@@ -50,6 +50,7 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
         }
         try:
             profile_resp = self.get_profile_response(data)
+            pprint.pprint(profile_resp, sort_dicts=False)
             current_app.logger.debug(profile_resp)
             auth_code = self.__get(profile_resp, 'AuthCode')
             if auth_code != 'P':
